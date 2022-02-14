@@ -1,0 +1,14 @@
+Mô tả dự án Dictionary:
+1. Mô tả các lớp:
+- Các lớp Model:
++ Account: lưu thông tin tài khoản người dùng
++ Explanation: Lưu thông tin liên quan đến định nghĩa từ (nghĩa, phiên âm, từ loại...)
++ Dictionary: Chứa danh sách từ và các phương thức để truy xuất thông tin (hiển thị danh sách từ, tra từ, 
+kiểm tra từ có tại hay không...)
+- Các lớp Controller:
++ DictionaryForAdmin: Mở rộng từ lớp Dictionary và thêm các phương thức dành riêng cho Admin (thêm, sửa, xoá...)
++ DictionaryForUser: Mở rộng từ lớp Dictionary và thêm các phương thức dành riêng cho User (tra cụm từ/câu, ...)
++ Ngoài ra là các lớp khác liên quan đến quản lý tài khoản, xác minh tài khoản, đọc ghi file
+2. Chức năng của chương trình:
+
+
