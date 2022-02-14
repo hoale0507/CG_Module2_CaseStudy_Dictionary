@@ -42,10 +42,13 @@ public class Dictionary implements Serializable, WriteToFile, ReadFile {
                 }
             }
         }
-        for (String word:
-             wordsArray) {
-            System.out.println(word);
+        for (int i = 0; i < wordsArray.size(); i++) {
+            System.out.println((i+1)+". "+wordsArray.get(i));
         }
+//        for (String word:
+//             wordsArray) {
+//            System.out.println(word);
+//        }
     }
 
     public int numberOfWord(){

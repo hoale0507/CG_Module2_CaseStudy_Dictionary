@@ -3,6 +3,8 @@ package com.company.view;
 import com.company.controller.DictionaryForUser;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -12,8 +14,8 @@ public class UserMenu {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_GREEN = "\u001B[32m";
-    Scanner input = new Scanner(System.in);
-    DictionaryForUser dictionaryForUser = new DictionaryForUser();
+     Scanner input = new Scanner(System.in);
+     DictionaryForUser dictionaryForUser = new DictionaryForUser();
 
     public void run() {
         try {
@@ -25,12 +27,7 @@ public class UserMenu {
         }
         int choice = -1;
         do{
-            System.out.println(ANSI_BLUE +  "---Menu---\n" + ANSI_RESET +
-                    "1.\tHiển thị danh sách từ theo Alphabet\n" +
-                    "2.\tTra từ\n" +
-                    "3.\tTra cụm từ hoặc câu\n" +
-                    "0.\tĐăng xuất\n" +
-                    ANSI_BLUE + "Nhập lựa chọn của bạn\n" + ANSI_RESET);
+            userMenu();
             try {
                 choice = input.nextInt();
             } catch (InputMismatchException inputMismatchException){
@@ -61,7 +58,51 @@ public class UserMenu {
                     System.out.println(ANSI_PURPLE +  dictionaryForUser.searchPhrase(phrase) + ANSI_RESET);
                     break;
                 }
+
+                case 4: {
+                    overview();
+                    break;
+                }
             }
         } while(choice != 0);
+    }
+
+    private void overview() {
+        ArrayList<String> overviewList = dictionaryForUser.overviewList();
+        System.out.println("Cho danh sách 10 từ sau: ");
+        System.out.println(ANSI_GREEN + overviewList + ANSI_RESET);
+        System.out.println("Bạn hãy nhập nghĩa của các từ theo thứ tự:");
+        int score = 0;
+        ArrayList<String> wrongWords = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            String word = input.nextLine().toLowerCase();
+            String targetMeaning = dictionaryForUser.meaningFoundByWord(overviewList.get(i));
+            if(word.equals(targetMeaning)){
+                score++;
+            } else {
+                wrongWords.add(overviewList.get(i));
+            }
+        }
+        System.out.println("Số điểm của bạn là: " + score + "/10");
+        if(wrongWords.size() != 0) {
+            System.out.println("Các từ bị sai: " + wrongWords);
+        }
+        if(score <= 5){
+            System.out.println("Kết quả chưa tốt. Bạn hãy cố gắng ôn tập thêm nhé!");
+        } else if (score > 6 && score <=8){
+            System.out.println("Kết quả trung bình!");
+        } else {
+            System.out.println("Kết quả tốt!");
+        }
+    }
+
+    private void userMenu() {
+        System.out.println(ANSI_BLUE +  "---Menu---\n" + ANSI_RESET +
+                "1.\tHiển thị danh sách từ theo Alphabet\n" +
+                "2.\tTra từ\n" +
+                "3.\tTra cụm từ hoặc câu\n" +
+                "4.\tOverview\n" +
+                "0.\tĐăng xuất\n" +
+                ANSI_BLUE + "Nhập lựa chọn của bạn\n" + ANSI_RESET);
     }
 }

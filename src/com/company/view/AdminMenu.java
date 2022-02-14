@@ -29,7 +29,7 @@ public class AdminMenu {
             try {
                 choice = input.nextInt();
             } catch (InputMismatchException inputMismatchException){
-                System.err.println("Lưu ý chỉ nhập chữ số từ 0 đến 6!");
+                System.err.println("Lưu ý chỉ nhập chữ số từ 0 đến 5!");
             }
             input.nextLine();
             switch (choice) {
@@ -73,27 +73,21 @@ public class AdminMenu {
                 }
 
                 case 5: {
-                    System.out.println("Số lượng từ có trong từ điển: ");
-                    System.out.println(dictionaryForAdmin.numberOfWord());
-                    break;
-                }
-
-                case 6: {
                     System.out.println("Nhập từ cần sửa: ");
                     String word = (input.nextLine()).toLowerCase();
                     if(dictionaryForAdmin.isExitedWord(word)){
-                        int updateChoice = -1;
+                        int choiceUpdate = -1;
                         do {
                             updateMenu();
 
                             try {
-                                updateChoice = input.nextInt();
+                                choiceUpdate = input.nextInt();
                             } catch (InputMismatchException inputMismatchException){
                                 System.err.println("Lưu ý chỉ nhập chữ số từ 0 đến 4!");
                             }
                             input.nextLine();
 
-                            switch (updateChoice){
+                            switch (choiceUpdate){
                                 case 1: {
                                     System.out.println("Nhập nghĩa mới của từ: ");
                                     String meaning = input.nextLine();
@@ -126,7 +120,7 @@ public class AdminMenu {
                                     break;
                                 }
                             }
-                        } while (updateChoice != 0);
+                        } while (choiceUpdate != 0);
                     } else {
                         System.err.println("Từ bạn nhập không tồn tại!");
                     }
@@ -172,8 +166,7 @@ public class AdminMenu {
                 "2.\tThêm từ mới\n" +
                 "3.\tXoá từ\n" +
                 "4.\tTra từ\n" +
-                "5.\tHiển thị số lượng từ\n" +
-                "6.\tSửa từ\n" +
+                "5.\tSửa từ\n" +
                 "0.\tĐăng xuất");
         System.out.println(ANSI_BLUE + "Vui lòng nhập lựa chọn của bạn" + ANSI_RESET);
     }

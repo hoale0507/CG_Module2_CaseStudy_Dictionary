@@ -118,7 +118,7 @@ public class LoginMenu {
         do{
             System.out.println(ANSI_BLUE + "Vui lòng nhập role của bạn ("  +
                     "Lưu ý: Chỉ nhập \'user\' hoặc \'admin\') \n" + ANSI_RESET);
-            role = input.nextLine();
+            role = input.nextLine().toLowerCase();
         } while (!role.equals("admin") && !role.equals("user"));
         accountManagement.register(id, password, role);
         System.out.println("Đăng ký tài khoản thành công!");

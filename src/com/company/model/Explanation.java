@@ -53,7 +53,7 @@ public class Explanation implements Serializable {
 
     @Override
     public String toString() {
-        return "-  Ý nghĩa: '" + meaning + "\n" +
+        return "-  Ý nghĩa: " + meaning + "\n" +
                 "-  Từ loại: " + wordType + "\n" +
                 "-  Phát âm: " + pronunciation + "\n" +
                 "-  Ví dụ: " + exampleInUse;
