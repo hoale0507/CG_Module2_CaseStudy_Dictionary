@@ -6,6 +6,7 @@ import com.company.model.Account;
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class LoginMenu {
@@ -70,16 +71,19 @@ public class LoginMenu {
                 System.err.println("Password bạn nhập bị sai!");
             } else {
                 System.out.println(ANSI_RED + "ID bạn nhập chưa được đăng ký!!" + ANSI_RESET);
-                System.out.println("Bạn có muốn đăng ký tài khoản mới không? \n" +
-                        "Chọn " + ANSI_BLUE + "Có " + ANSI_RESET + "để đăng ký mới tài khoản hoặc chọn" +
-                        ANSI_BLUE + " Không " + ANSI_RESET + "để quay lại phần đăng nhập");
-                String choice1 = input.nextLine();
-                if(choice1.equals("Có")){
-                    doRegistration();
-                    System.out.println("Mời bạn tiếp tục đăng nhập để sử dụng hệ thống! \n");
-                } else {
-                    System.out.println("Quay lại phần đăng nhập");
-                }
+                System.out.println("Bạn có muốn đăng ký tài khoản mới không? \n");
+                String choiceYesNo;
+                do {
+                    System.out.println("Chọn " + ANSI_BLUE + "Có " + ANSI_RESET + "để đăng ký mới tài khoản hoặc chọn" +
+                            ANSI_BLUE + " Không " + ANSI_RESET + "để quay lại phần đăng nhập");
+                    choiceYesNo = input.nextLine().toLowerCase();
+                    if (choiceYesNo.equals("có")) {
+                        doRegistration();
+                        System.out.println("Mời bạn tiếp tục đăng nhập để sử dụng hệ thống! \n");
+                    } else if(choiceYesNo.equals("không")){
+                        System.out.println("Quay lại phần đăng nhập");
+                    }
+                } while (!choiceYesNo.equals("không") && !choiceYesNo.equals("có"));
             }
         } while (!accountManagement.isSuccessfulLogin(id, password));
     }
