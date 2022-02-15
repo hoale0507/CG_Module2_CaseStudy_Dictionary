@@ -3,7 +3,6 @@ package com.company.view;
 import com.company.controller.DictionaryForUser;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -68,7 +67,7 @@ public class UserMenu {
     }
 
     private void overview() {
-        ArrayList<String> overviewList = dictionaryForUser.overviewList();
+        ArrayList<String> overviewList = dictionaryForUser.randomWordList();
         System.out.println("Cho danh sách 10 từ sau: ");
         System.out.println(ANSI_GREEN + overviewList + ANSI_RESET);
         System.out.println("Bạn hãy nhập nghĩa của các từ theo thứ tự:");

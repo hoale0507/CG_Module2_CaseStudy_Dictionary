@@ -23,7 +23,7 @@ public class DictionaryForUser extends Dictionary implements Usable{
     }
 
     @Override
-    public ArrayList<String> overviewList() {
+    public ArrayList<String> randomWordList() {
         Set<String> words = super.getDictionary().keySet();
         ArrayList<String> wordsArray = new ArrayList<>(words);
         ArrayList<String> wordsOverview = new ArrayList<>();
