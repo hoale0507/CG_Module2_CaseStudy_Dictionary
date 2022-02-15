@@ -44,8 +44,15 @@ public class AdminMenu {
 
                 case 2:
                 {
-                    addWord();
-                    System.out.println("Thêm từ thành công!");
+                    System.out.println("Nhập từ cần thêm:");
+                    String word = (input.nextLine()).toLowerCase();
+                    if(dictionaryForAdmin.isExitedWord(word)){
+                        System.out.println("Từ " + "\'"+word+"\'"+ " đã tồn tại!");
+                    } else {
+                        Explanation explanation = getExplanation();
+                        dictionaryForAdmin.addWord(word, explanation);
+                        System.out.println("Thêm từ thành công!");
+                    }
                     break;
                 }
 
@@ -135,9 +142,7 @@ public class AdminMenu {
         } while (choice != 0);
     }
 
-    private void addWord() {
-        System.out.println("Nhập từ cần thêm:");
-        String word = (input.nextLine()).toLowerCase();
+    private Explanation getExplanation() {
         System.out.println("Nhập ý nghĩa của từ:");
         String meaning = (input.nextLine()).toLowerCase();
         System.out.println("Nhập phiên âm của từ: ");
@@ -147,7 +152,7 @@ public class AdminMenu {
         System.out.println("Nhập ví dụ về cách sử dụng của từ:");
         String exampleInUse = (input.nextLine()).toLowerCase();
         Explanation explanation = new Explanation(meaning, pronunciation, wordType, exampleInUse);
-        dictionaryForAdmin.addWord(word, explanation);
+        return explanation;
     }
 
     private void updateMenu() {
