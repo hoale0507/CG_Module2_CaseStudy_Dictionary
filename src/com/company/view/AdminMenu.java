@@ -8,13 +8,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AdminMenu {
-     Scanner input = new Scanner(System.in);
-     DictionaryForAdmin dictionaryForAdmin = new DictionaryForAdmin();
+    Scanner input = new Scanner(System.in);
+    DictionaryForAdmin dictionaryForAdmin = new DictionaryForAdmin();
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
 
-    public void run()  {
+    public void run() {
         try {
             dictionaryForAdmin.readFile("dictionary.txt");
         } catch (IOException e) {
@@ -24,30 +24,30 @@ public class AdminMenu {
         }
 
         int choice = -1;
-        do{
+        do {
             adminMenu();
             try {
                 choice = input.nextInt();
-            } catch (InputMismatchException inputMismatchException){
+            } catch (InputMismatchException inputMismatchException) {
                 System.err.println("Lưu ý chỉ nhập chữ số từ 0 đến 5!");
             }
             input.nextLine();
             switch (choice) {
                 case 1: {
-                    if(dictionaryForAdmin.numberOfWord() == 0){
-                        System.out.println(ANSI_YELLOW +  "Danh sách từ đang trống" + ANSI_RESET);
+                    if (dictionaryForAdmin.numberOfWord() == 0) {
+                        System.out.println(ANSI_YELLOW + "Danh sách từ đang trống" + ANSI_RESET);
                     } else {
-                        System.out.println(ANSI_BLUE +  "Danh sách từ tiếng Anh xếp theo Alphabet: " + ANSI_RESET);
-                        dictionaryForAdmin.printWordList();}
+                        System.out.println(ANSI_BLUE + "Danh sách từ tiếng Anh xếp theo Alphabet: " + ANSI_RESET);
+                        dictionaryForAdmin.printWordList();
+                    }
                     break;
                 }
 
-                case 2:
-                {
+                case 2: {
                     System.out.println("Nhập từ cần thêm:");
                     String word = (input.nextLine()).toLowerCase();
-                    if(dictionaryForAdmin.isExitedWord(word)){
-                        System.out.println("Từ " + "\'"+word+"\'"+ " đã tồn tại!");
+                    if (dictionaryForAdmin.isExitedWord(word)) {
+                        System.out.println("Từ " + "\'" + word + "\'" + " đã tồn tại!");
                     } else {
                         Explanation explanation = getExplanation();
                         dictionaryForAdmin.addWord(word, explanation);
@@ -59,7 +59,7 @@ public class AdminMenu {
                 case 3: {
                     System.out.println("Nhập từ cần xoá:");
                     String word = (input.nextLine()).toLowerCase();
-                    if(dictionaryForAdmin.isExitedWord(word)){
+                    if (dictionaryForAdmin.isExitedWord(word)) {
                         dictionaryForAdmin.deleteWord(word);
                         System.out.println("Đã xoá từ " + word + "khỏi danh sách!");
                     } else {
@@ -71,7 +71,7 @@ public class AdminMenu {
                 case 4: {
                     System.out.println("Nhập từ cần tra:");
                     String word = (input.nextLine()).toLowerCase();
-                    if(dictionaryForAdmin.isExitedWord(word)){
+                    if (dictionaryForAdmin.isExitedWord(word)) {
                         System.out.println(dictionaryForAdmin.searchWord(word));
                     } else {
                         System.err.println("Không tìm thấy từ " + "\'" + word + "\'!");
@@ -82,19 +82,19 @@ public class AdminMenu {
                 case 5: {
                     System.out.println("Nhập từ cần sửa: ");
                     String word = (input.nextLine()).toLowerCase();
-                    if(dictionaryForAdmin.isExitedWord(word)){
+                    if (dictionaryForAdmin.isExitedWord(word)) {
                         int choiceUpdate = -1;
                         do {
                             updateMenu();
 
                             try {
                                 choiceUpdate = input.nextInt();
-                            } catch (InputMismatchException inputMismatchException){
+                            } catch (InputMismatchException inputMismatchException) {
                                 System.err.println("Lưu ý chỉ nhập chữ số từ 0 đến 4!");
                             }
                             input.nextLine();
 
-                            switch (choiceUpdate){
+                            switch (choiceUpdate) {
                                 case 1: {
                                     System.out.println("Nhập nghĩa mới của từ: ");
                                     String meaning = input.nextLine();
@@ -162,11 +162,11 @@ public class AdminMenu {
                 "3.\tSửa từ loại\n" +
                 "4.\tSửa ví dụ\n" +
                 "0.\tQuay lại\n" +
-                ANSI_BLUE +  "Nhập lựa chọn của bạn.\n" + ANSI_RESET);
+                ANSI_BLUE + "Nhập lựa chọn của bạn.\n" + ANSI_RESET);
     }
 
     private void adminMenu() {
-        System.out.println(ANSI_BLUE +  "---Menu---\n" + ANSI_RESET +
+        System.out.println(ANSI_BLUE + "---Menu---\n" + ANSI_RESET +
                 "1.\tHiển thị danh sách từ\n" +
                 "2.\tThêm từ mới\n" +
                 "3.\tXoá từ\n" +

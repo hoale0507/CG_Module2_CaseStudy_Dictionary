@@ -3,7 +3,7 @@ package com.company.controller;
 import com.company.model.Dictionary;
 import com.company.model.Explanation;
 
-public class DictionaryForAdmin extends Dictionary implements Manageable<Explanation>, Updatable{
+public class DictionaryForAdmin extends Dictionary implements Manageable<Explanation>, Updatable {
     @Override
     public Explanation addWord(String word, Explanation explanation) {
         return super.getDictionary().put(word, explanation);

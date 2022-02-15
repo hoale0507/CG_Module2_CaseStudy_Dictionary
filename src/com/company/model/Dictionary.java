@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.*;
 
 public class Dictionary implements Serializable, WriteToFile, ReadFile {
-    private Map <String, Explanation> dictionary = new HashMap<String, Explanation>();
+    private Map<String, Explanation> dictionary = new HashMap<String, Explanation>();
 
     public Dictionary() {
     }
@@ -24,26 +24,26 @@ public class Dictionary implements Serializable, WriteToFile, ReadFile {
         this.dictionary = dictionary;
     }
 
-    public Explanation searchWord(String word){
+    public Explanation searchWord(String word) {
         return dictionary.get(word);
     }
 
-    public void printWordList(){
+    public void printWordList() {
         Set<String> words = dictionary.keySet();
         ArrayList<String> wordsArray = new ArrayList<>(words);
 //        Collections.sort(wordsArray);
         // Sắp xếp nổi bọt trước khi in
         for (int i = 0; i < wordsArray.size(); i++) {
-            for (int j = 0; j < wordsArray.size()-i-1; j++) {
-                if(wordsArray.get(j).compareTo(wordsArray.get(j+1)) > 0){
+            for (int j = 0; j < wordsArray.size() - i - 1; j++) {
+                if (wordsArray.get(j).compareTo(wordsArray.get(j + 1)) > 0) {
                     String temp = wordsArray.get(j);
-                    wordsArray.set(j, wordsArray.get(j+1));
-                    wordsArray.set(j+1, temp);
+                    wordsArray.set(j, wordsArray.get(j + 1));
+                    wordsArray.set(j + 1, temp);
                 }
             }
         }
         for (int i = 0; i < wordsArray.size(); i++) {
-            System.out.println((i+1)+". "+wordsArray.get(i));
+            System.out.println((i + 1) + ". " + wordsArray.get(i));
         }
 //        for (String word:
 //             wordsArray) {
@@ -51,12 +51,12 @@ public class Dictionary implements Serializable, WriteToFile, ReadFile {
 //        }
     }
 
-    public int numberOfWord(){
+    public int numberOfWord() {
         return dictionary.size();
     }
 
-    public boolean isExitedWord(String word){
-        if(dictionary.containsKey(word)){
+    public boolean isExitedWord(String word) {
+        if (dictionary.containsKey(word)) {
             return true;
         }
         return false;
@@ -75,7 +75,7 @@ public class Dictionary implements Serializable, WriteToFile, ReadFile {
     @Override
     public void readFile(String path) throws IOException, ClassNotFoundException {
         File file = new File(path);
-        if(file.exists()){
+        if (file.exists()) {
             InputStream is = new FileInputStream(path);
             ObjectInputStream ois = new ObjectInputStream(is);
             dictionary = (HashMap<String, Explanation>) ois.readObject();

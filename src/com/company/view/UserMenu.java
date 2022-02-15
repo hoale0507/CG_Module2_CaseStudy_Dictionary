@@ -13,8 +13,8 @@ public class UserMenu {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_GREEN = "\u001B[32m";
-     Scanner input = new Scanner(System.in);
-     DictionaryForUser dictionaryForUser = new DictionaryForUser();
+    Scanner input = new Scanner(System.in);
+    DictionaryForUser dictionaryForUser = new DictionaryForUser();
 
     public void run() {
         try {
@@ -25,25 +25,25 @@ public class UserMenu {
             e.printStackTrace();
         }
         int choice = -1;
-        do{
+        do {
             userMenu();
             try {
                 choice = input.nextInt();
-            } catch (InputMismatchException inputMismatchException){
+            } catch (InputMismatchException inputMismatchException) {
                 System.err.println("Lưu ý chỉ nhập chữ số từ 0 đến 3!");
             }
             input.nextLine();
-            switch (choice){
+            switch (choice) {
                 case 1: {
-                    System.out.println(ANSI_BLUE +  "Danh sách từ Tiếng Anh xếp theo Alphabet: " + ANSI_RESET);
+                    System.out.println(ANSI_BLUE + "Danh sách từ Tiếng Anh xếp theo Alphabet: " + ANSI_RESET);
                     dictionaryForUser.printWordList();
                     break;
                 }
 
                 case 2: {
-                    System.out.println(ANSI_BLUE +  "Vui lòng nhập từ cần tra:" + ANSI_RESET);
+                    System.out.println(ANSI_BLUE + "Vui lòng nhập từ cần tra:" + ANSI_RESET);
                     String word = (input.nextLine()).toLowerCase();
-                    if(dictionaryForUser.isExitedWord(word)){
+                    if (dictionaryForUser.isExitedWord(word)) {
                         System.out.println(dictionaryForUser.searchWord(word));
                     } else {
                         System.err.println("Không tim thấy từ " + "\'" + word + "\'!");
@@ -52,9 +52,9 @@ public class UserMenu {
                 }
 
                 case 3: {
-                    System.out.println(ANSI_BLUE +  "Nhập vào cụm từ hoặc câu cần dịch nghĩa: " + ANSI_RESET);
+                    System.out.println(ANSI_BLUE + "Nhập vào cụm từ hoặc câu cần dịch nghĩa: " + ANSI_RESET);
                     String phrase = (input.nextLine()).toLowerCase();
-                    System.out.println(ANSI_PURPLE +  dictionaryForUser.searchPhrase(phrase) + ANSI_RESET);
+                    System.out.println(ANSI_PURPLE + dictionaryForUser.searchPhrase(phrase) + ANSI_RESET);
                     break;
                 }
 
@@ -63,7 +63,7 @@ public class UserMenu {
                     break;
                 }
             }
-        } while(choice != 0);
+        } while (choice != 0);
     }
 
     private void overview() {
@@ -76,19 +76,19 @@ public class UserMenu {
         for (int i = 0; i < 10; i++) {
             String word = input.nextLine().toLowerCase();
             String targetMeaning = dictionaryForUser.meaningFoundByWord(overviewList.get(i));
-            if(word.equals(targetMeaning)){
+            if (word.equals(targetMeaning)) {
                 score++;
             } else {
                 wrongWords.add(overviewList.get(i));
             }
         }
         System.out.println("Số điểm của bạn là: " + score + "/10");
-        if(wrongWords.size() != 0) {
+        if (wrongWords.size() != 0) {
             System.out.println("Các từ bị sai: " + wrongWords);
         }
-        if(score <= 5){
+        if (score <= 5) {
             System.out.println("Kết quả chưa tốt. Bạn hãy cố gắng ôn tập thêm nhé!");
-        } else if (score > 6 && score <=8){
+        } else if (score > 6 && score <= 8) {
             System.out.println("Kết quả trung bình!");
         } else {
             System.out.println("Kết quả tốt!");
@@ -96,7 +96,7 @@ public class UserMenu {
     }
 
     private void userMenu() {
-        System.out.println(ANSI_BLUE +  "---Menu---\n" + ANSI_RESET +
+        System.out.println(ANSI_BLUE + "---Menu---\n" + ANSI_RESET +
                 "1.\tHiển thị danh sách từ theo Alphabet\n" +
                 "2.\tTra từ\n" +
                 "3.\tTra cụm từ hoặc câu\n" +
